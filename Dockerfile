@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.11-slim
 
 WORKDIR /srv/app
 
@@ -9,4 +9,4 @@ RUN apt update && \
 
 RUN pip install poetry
 
-RUN postry install --no-root
+RUN poetry install --no-root
