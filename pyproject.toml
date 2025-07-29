@@ -16,7 +16,10 @@ dependencies = [
 ]
 
 [tool.poetry]
-packages = [{ include = "api", from = "src" }]
+packages = [
+    { include = "api", from = "src" },
+    { include = "train", from = "lib" },
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
