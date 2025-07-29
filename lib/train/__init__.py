@@ -1,3 +1,6 @@
+import os
+import pickle
+
 import numpy as np
 import pandas as pd
 
@@ -50,3 +53,20 @@ def __get_model(lookback=60):
 
   return model
 
+def save_model(symbol, model, scaler, dataset):
+  output_dir = "models"
+  os.makedirs(output_dir, exist_ok=True)
+
+  model_path = os.path.join(output_dir, f"{symbol}_model.h5")
+  scaler_path = os.path.join(output_dir, f"{symbol}_scaler.pkl")
+  dataset_path = os.path.join(output_dir, f"{symbol}_dataset.pkl")
+
+  model.save(model_path)
+
+  with open(scaler_path, "wb") as f:
+    pickle.dump(scaler, f)
+
+  with open(dataset_path, "wb") as f:
+    pickle.dump(dataset, f)
+
+  return {"model_path": model_path, "scaler_path": scaler_path, "dataset_path": dataset_path}
