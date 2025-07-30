@@ -1,4 +1,12 @@
 services:
   rest_api:
     build: .
-    command: sleep infinity
+    ports:
+    - 8000:8000
+    command: poetry run serve
+
+  jupyter:
+    build: .
+    ports:
+    - 8888:8888
+    command: poetry run jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root

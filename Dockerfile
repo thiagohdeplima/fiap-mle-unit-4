@@ -9,4 +9,8 @@ RUN apt update && \
 
 RUN pip install poetry
 
-RUN poetry install --no-root
+RUN poetry install
+
+USER daemon
+
+CMD ["poetry", "run", "serve"]
